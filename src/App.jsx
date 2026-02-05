@@ -12,7 +12,7 @@ import { EXAMPLES } from './data.js';
 
 
 function App() {
-  const [selectedtopic, setselectedtopic] = useState('Components');
+  const [selectedtopic, setselectedtopic] = useState('components');
 
    function handleSelect(selectedButton){
     //selectedButton =>'Components', jsx,props,states
@@ -24,23 +24,31 @@ function App() {
     <div>
       <Header />
        <section id = "core-concepts" >
+        
         <h2>Core Concepts</h2>
         <ul>
-          <Coreconcept {...CORE_CONCEPTS[0]}/>
+            <Coreconcept
+              title={CORE_CONCEPTS[0].title}
+              description={CORE_CONCEPTS[0].description}
+              image={CORE_CONCEPTS[0].image}
+            />
+          <Coreconcept {...CORE_CONCEPTS[1]}/>
 
-          <Coreconcept  {...CORE_CONCEPTS[1]} />
-          <Coreconcept {...CORE_CONCEPTS[2]}
+          <Coreconcept  {...CORE_CONCEPTS[2]} />
+          <Coreconcept {...CORE_CONCEPTS[3]}
           />
-          <Coreconcept {...CORE_CONCEPTS[3]}/>
+          
         </ul>
        </section> 
        <section id = 'example'>
         <h2>Examples</h2>
         <menu>
-          <TabButton onSelect={()=>handleSelect('components')}>Components</TabButton>
-          <TabButton onSelect={()=>handleSelect('JSX')}>Jsx</TabButton>
-          <TabButton onSelect={()=>handleSelect('Props')}>Props</TabButton>
-          <TabButton onSelect={()=>handleSelect('State')}>State</TabButton>
+           <TabButton onSelect={() => handleSelect('components')}>
+              Components
+            </TabButton>
+            <TabButton onSelect={() => handleSelect('jsx')}>JSX</TabButton>
+            <TabButton onSelect={() => handleSelect('props')}>Props</TabButton>
+            <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
         </menu>
         <div id = "tab-content">
           <h3>{EXAMPLES[selectedtopic].title}</h3>
