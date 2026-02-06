@@ -12,12 +12,26 @@ import { EXAMPLES } from './data.js';
 
 
 function App() {
-  const [selectedtopic, setselectedtopic] = useState('components');
+  const [selectedtopic, setselectedtopic] = useState();
 
    function handleSelect(selectedButton){
     //selectedButton =>'Components', jsx,props,states
         setselectedtopic(selectedButton);
         console.log(selectedtopic);
+    }
+
+    let tabcontent = <p>Please select a topic</p>
+    if (selectedtopic) {
+      tabcontent = <div id ="tab-content">
+
+          <h3>{EXAMPLES[selectedtopic].title}</h3>
+          <p>{EXAMPLES[selectedtopic].description}</p>
+          <pre>
+            <code>
+              <code>{EXAMPLES[selectedtopic].code}</code>
+            </code>
+          </pre>
+        </div>
     }
 
   return (
@@ -43,22 +57,16 @@ function App() {
        <section id = 'example'>
         <h2>Examples</h2>
         <menu>
-           <TabButton onSelect={() => handleSelect('components')}>
+           <TabButton  isSelected={selectedtopic =='components'} onSelect={() => handleSelect('components')}>
               Components
             </TabButton>
-            <TabButton onSelect={() => handleSelect('jsx')}>JSX</TabButton>
-            <TabButton onSelect={() => handleSelect('props')}>Props</TabButton>
-            <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
+            <TabButton isSelected={selectedtopic =='JSX'} onSelect={() => handleSelect('jsx')}>JSX</TabButton>
+            <TabButton isSelected={selectedtopic =='Props'} onSelect={() => handleSelect('props')}>Props</TabButton>
+            <TabButton isSelected={selectedtopic =='State'} onSelect={() => handleSelect('state')}>State</TabButton>
         </menu>
-        <div id = "tab-content">
-          <h3>{EXAMPLES[selectedtopic].title}</h3>
-          <p>{EXAMPLES[selectedtopic].description}</p>
-          <pre>
-            <code>
-              <code>{EXAMPLES[selectedtopic].code}</code>
-            </code>
-          </pre>
-        </div>
+
+        {tabcontent}
+      
        </section>
      
       <main>
