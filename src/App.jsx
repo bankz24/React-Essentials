@@ -3,7 +3,7 @@
 
 import Header from './components/Header/Header.jsx';
 import CoreConcepts from './components/CoreConcepts.jsx';
-import EXAMPLES from './components/EXAMPLES.jsx';
+import Examples from './components/EXAMPLES.jsx';
 
 
 
@@ -18,6 +18,7 @@ function App() {
       <Header />
          <main>
           <CoreConcepts />
+          <Examples />
        
       </main>
       </>
